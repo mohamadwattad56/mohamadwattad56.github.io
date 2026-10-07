@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohamad Wattad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single readable column; projects read like request/response logs, each tagged with a real protocol detail */
+:root {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --fg: #141b26;
+  --muted: #5a6577;
+  --line: #dde3ec;
+  --accent: #1f5fd1;
+  --accent-soft: #e6eefc;
+  --signal: #b35a00;
+  --signal-soft: #fdf0e1;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e131b; --surface: #151c27; --fg: #e7ecf3; --muted: #97a3b6; --line: #263042;
+    --accent: #7aa7ff; --accent-soft: #1a2740; --signal: #f2a654; --signal-soft: #2c2114;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e131b; --surface: #151c27; --fg: #e7ecf3; --muted: #97a3b6; --line: #263042;
+  --accent: #7aa7ff; --accent-soft: #1a2740; --signal: #f2a654; --signal-soft: #2c2114;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body); }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 48px 64px; display: grid; gap: 64px; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+header { display: grid; gap: 20px; }
+.status { font: 500 13px var(--mono); color: var(--signal); background: var(--signal-soft); padding: 4px 10px; border-radius: 999px; justify-self: start; }
+h1 { font-family: var(--display); font-variation-settings: "wdth" 118; font-weight: 800; font-size: clamp(2.4rem, 8vw, 4.2rem); line-height: 1.02; margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+.role { font-family: var(--display); font-variation-settings: "wdth" 110; font-weight: 600; font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--accent); margin: 0; }
+.lede { max-width: 62ch; margin: 0; color: var(--muted); font-size: 1.05rem; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
+.links a { font: 500 14px var(--mono); text-decoration: none; padding: 8px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--fg); background: var(--surface); }
+.links a:hover { border-color: var(--accent); color: var(--accent); }
+
+h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 20px; display: flex; align-items: center; gap: 12px; }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+.projects { display: grid; gap: 16px; }
+.proj { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 12px; min-width: 0; }
+.proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.proj h3 { font-family: var(--display); font-variation-settings: "wdth" 108; font-weight: 700; font-size: 1.25rem; margin: 0; text-wrap: balance; }
+.tag { font: 500 12.5px var(--mono); color: var(--signal); white-space: nowrap; }
+.proj p { margin: 0; color: var(--muted); max-width: 68ch; }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font: 12.5px var(--mono); background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 5px; }
+.repo { font: 13px var(--mono); }
+
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; }
+.two > * { min-width: 0; }
+.skills { display: grid; gap: 14px; margin: 0; }
+.skills div { display: grid; gap: 4px; }
+.skills dt { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.skills dd { margin: 0; }
+.edu h3 { font-family: var(--display); font-variation-settings: "wdth" 108; font-weight: 700; font-size: 1.1rem; margin: 0 0 2px; }
+.edu .meta { font: 13px var(--mono); color: var(--muted); margin: 0 0 10px; }
+.edu p { margin: 0 0 10px; color: var(--muted); }
+.cert { display: inline-flex; gap: 8px; align-items: center; font: 500 13px var(--mono); border: 1px dashed var(--signal); color: var(--signal); padding: 5px 10px; border-radius: 6px; }
+
+.contact { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: grid; gap: 14px; }
+.contact p { margin: 0; max-width: 60ch; }
+.mail { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.mail code { font: 500 15px var(--mono); user-select: all; background: var(--accent-soft); padding: 6px 10px; border-radius: 6px; color: var(--fg); word-break: break-all; }
+.mail button { font: 500 13px var(--mono); padding: 7px 12px; border-radius: 6px; border: 1px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; }
+footer { font: 12.5px var(--mono); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="status">● open to work · Israel or abroad</span>
+    <h1>Mohamad Wattad</h1>
+    <p class="role">Backend &amp; Software Developer · Networking</p>
+    <p class="lede">Computer Science graduate who builds backend systems with Java, Spring Boot, Kafka and Docker, and ships real apps for small businesses as a freelance developer. Currently working toward the Cisco CCNA. Looking for a first full-time role in software development, NOC, or something close to both.</p>
+    <nav class="links" aria-label="Profiles">
+      <a href="https://github.com/mohamadwattad56" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://linkedin.com/in/mohamad-wattad" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section aria-labelledby="work">
+    <h2 id="work">Freelance work</h2>
+    <article class="proj">
+      <div class="proj-head">
+        <h3>Apps for cafés &amp; restaurants</h3>
+        
+      </div>
+      <p>I build apps for cafés and restaurants in small towns and villages, working directly with the owners. That means ordering systems and internal tools that replace manual, paper-based routines in day-to-day operations.</p>
+      <p>I own the full cycle: gathering requirements, modeling the data, deploying, and supporting the business after launch. I use AI tools such as Claude Code and Base44 to move fast, and I review and test the generated code before anything goes live.</p>
+    </article>
+  </section>
+
+  <section aria-labelledby="projects">
+    <h2 id="projects">Projects</h2>
+    <div class="projects">
+      <article class="proj">
+        <div class="proj-head"><h3>Kafka E-Commerce Backend</h3></div>
+        <p>Event-driven order processing across two Spring Boot microservices that talk through Apache Kafka. Orders are keyed by orderId so each order's events stay in sequence, failed messages go to dead-letter topics, and the consumer validates orders, calculates shipping and stores them in MongoDB. The whole stack runs with Docker Compose.</p>
+        <div class="stack"><span>Java</span><span>Spring Boot</span><span>Kafka</span><span>Docker</span><span>MongoDB</span><span>REST</span></div>
+        <a class="repo" href="https://github.com/mohamadwattad56/kafka-producer-consumer" target="_blank" rel="noopener">kafka-producer-consumer ↗</a>
+      </article>
+
+      <article class="proj">
+        <div class="proj-head"><h3>TCP Web Server</h3></div>
+        <p>An HTTP/1.1 server written over raw TCP sockets. It serves many clients at once using select() I/O multiplexing and non-blocking sockets, parses requests, and returns correct status codes for the full method set. Protocol compliance was verified with Wireshark.</p>
+        <div class="stack"><span>C++</span><span>Winsock2</span><span>TCP sockets</span><span>HTTP/1.1</span><span>Wireshark</span></div>
+        <a class="repo" href="https://github.com/mohamadwattad56/WebServer" target="_blank" rel="noopener">WebServer ↗</a>
+      </article>
+
+      <article class="proj">
+        <div class="proj-head"><h3>Shticell</h3></div>
+        <p>A multi-user client-server spreadsheet. JavaFX clients send JSON over HTTP to Jakarta Servlets on Tomcat. The server enforces role-based permissions, handles concurrent access with read-write locks, and detects conflicting edits through version checks.</p>
+        <div class="stack"><span>Java</span><span>Tomcat</span><span>Jakarta Servlets</span><span>JavaFX</span><span>OkHttp</span><span>Gson</span><span>JAXB</span></div>
+        <a class="repo" href="https://github.com/mohamadwattad56/Shticell" target="_blank" rel="noopener">Shticell ↗</a>
+      </article>
+
+      <article class="proj">
+        <div class="proj-head"><h3>FocusInbox</h3><span class="tag">final project · with a startup</span></div>
+        <p>My bachelor's final project, built together with a startup: an AI-powered cross-platform app that sorts and prioritizes WhatsApp messages. I built the Flutter interface and connected it to the backend APIs.</p>
+        <div class="stack"><span>Flutter</span><span>Dart</span><span>TypeScript</span><span>Node.js</span><span>MongoDB</span><span>RabbitMQ</span></div>
+        <a class="repo" href="https://github.com/mohamadwattad56/FocusInbox" target="_blank" rel="noopener">FocusInbox ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="two" aria-label="Skills and education">
+    <div>
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Java, C, C++, Python, JavaScript, C#, Dart</dd></div>
+        <div><dt>Backend</dt><dd>Spring Boot, Node.js, REST APIs, Kafka, RabbitMQ, multithreading</dd></div>
+        <div><dt>Networking</dt><dd>TCP/IP, HTTP, sockets, Wireshark, client-server architecture</dd></div>
+        <div><dt>Tools</dt><dd>Git, Docker, Linux, AWS, Jira, Claude Code, Base44</dd></div>
+        <div><dt>Databases</dt><dd>MongoDB, MySQL</dd></div>
+      </dl>
+    </div>
+    <div class="edu">
+      <h2>Education</h2>
+      <h3>BSc in Computer Science</h3>
+      <p class="meta">The Academic College of Tel Aviv–Yaffo · 2021–2025</p>
+      <p>Data Structures, Algorithms, Databases, Operating Systems, Computer Networks, Information Security, Compiler Design.</p>
+      <span class="cert">◐ Cisco CCNA · in progress</span>
+      <p style="margin-top:14px">Arabic (native) · Hebrew (fluent) · English (fluent)</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h" style="margin:0">Contact</h2>
+    <p>If you're hiring for a junior developer or NOC role, or know someone who is, I'd be glad to talk.</p>
+    <div class="mail">
+      <code id="email">mwattad56@gmail.com</code>
+      <button type="button" id="copy">Copy</button>
+    </div>
+  </section>
+
+  <footer>© 2026 Mohamad Wattad</footer>
+</div>
+
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('email').textContent;
+  function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    btn.textContent = 'Selected';
+  }
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+});
+</script>
+</body>
+</html>
